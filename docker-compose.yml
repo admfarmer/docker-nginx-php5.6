@@ -1,0 +1,12 @@
+  nginx-php5.6:
+    image: navidonskis/nginx-php5.6
+    container_name: nginx-php5.6
+    ports:
+      - 85:80
+    restart: always
+    volumes:
+      - ./www:/var/www
+      - ./mnt/docker/php/custom.ini:/etc/php/5.6/fpm/conf.d/custom.ini
+    command:
+      - '* * * * * echo "Hello $$(date)" >> /var/log/cron.log 2>&1'
+      - '* * * * * echo "Hello world !" >> /var/log/cron.log 2>&1'
